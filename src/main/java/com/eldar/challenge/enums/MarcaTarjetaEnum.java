@@ -34,6 +34,7 @@ public enum MarcaTarjetaEnum {
 				return b;
 			}
 		}
-		throw new IllegalArgumentException("Valor inesperado '" + text + "'");
+		throw new IllegalArgumentException("Valor inesperado '" + text
+				+ "'. Los valores posibles de la marca de la tarjeta son: 'VISA', 'Naranja', 'American Express'.");
 	}
 }
