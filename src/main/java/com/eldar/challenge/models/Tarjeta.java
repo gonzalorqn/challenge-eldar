@@ -59,4 +59,14 @@ public class Tarjeta {
 		// Comparo segun número de tarjeta
 		return this.numero.equals(tarjeta.numero);
 	}
+
+	@Override
+	public int hashCode() {
+		// Valor inicial
+		int resultado = 17;
+
+		// Calculo el hash usando el numero de tarjeta
+		resultado = 31 * resultado + (numero != null ? numero.hashCode() : 0);
+		return resultado;
+	}
 }
