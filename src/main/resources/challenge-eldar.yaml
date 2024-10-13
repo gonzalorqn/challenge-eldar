@@ -1,0 +1,158 @@
+swagger: "2.0"
+info:
+  description: Challenge Eldar
+  version: 1.0.0
+  title: Swagger Challenge Eldar
+produces:
+  - application/json
+  - application/xml
+consumes:
+  - application/json
+  - application/xml
+paths:
+  /tarjeta:
+    post:
+      operationId: crearTarjeta
+      description: Crea una nueva tarjeta.
+      tags:
+         - Tarjeta
+      parameters:
+        - name: tarjeta
+          in: body
+          description: Metadata de la tarjeta.
+          required: true
+          schema:
+            $ref: "#/definitions/TarjetaDTO"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/TarjetaDTO"
+  /tarjeta/{idTarjeta}:
+    get:
+      operationId: getTarjeta
+      description: Obtiene todos los datos de una tarjeta.
+      tags:
+         - Tarjeta
+      parameters:
+        - name: idTarjeta
+          in: path
+          description: Id de la tarjeta.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/TarjetaDTO"
+  /tarjeta/{idTarjeta}/isValida:
+    get:
+      operationId: getIsTarjetaValida
+      description: Verifica si una tarjeta es válida para operar en el sistema.
+      tags:
+         - Tarjeta
+      parameters:
+        - name: idTarjeta
+          in: path
+          description: Id de la tarjeta.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: boolean
+  /operacion:
+    post:
+      operationId: realizarOperacion
+      description: Realiza una operación en el sistema con la tarjeta especificada y guarda la información de dicha operación.
+      tags:
+         - Operacion
+      parameters:
+        - name: id_tarjeta
+          in: query
+          description: Id de la tarjeta.
+          required: true
+          type: string
+        - name: importe
+          in: query
+          description: Importe de la operación.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/OperacionDTO"
+  /operacion/{idOperacion}:
+    get:
+      operationId: consultarTasaOperacion
+      description: Calcula la tasa de una operación.
+      tags:
+         - Operacion
+      parameters:
+        - name: idOperacion
+          in: path
+          description: Id de la operación.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/TasaOperacionDTO"
+definitions:
+  TarjetaDTO:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: Id de la tarjeta.
+      marca:
+        type: string
+        description: Marca de la tarjeta.
+        format: enum
+          - VISA
+          - Naranja
+          - American Express
+      numero:
+        type: string
+        description: Número de la tarjeta.
+      cardholder:
+        type: string
+        description: Nombre y apellido del dueño de la tarjeta.
+      fechaVencimiento:
+        type: string
+        description: Mes y año de vencimiento de la tarjeta.
+  OperacionDTO:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: Id de la operación.
+      importe:
+        type: number
+        format: float
+        description: Importe de la operación.
+      tarjeta:
+        $ref: "#/definitions/TarjetaDTO"
+        description: Tarjeta usada para realizar la operación.
+      fechaTransaccion:
+        type: string
+        format: date-time
+        description: Fecha y hora en la que se realizó la operación.
+  TasaOperacionDTO:
+    type: object
+    properties:
+      tasaOperacion:
+        type: string
+        description: Tasa de la operación.
+      importe:
+        type: number
+        format: float
+        description: Importe de la operación.
+      marcaTarjeta:
+        type: string
+        description: Marca de la tarjeta.
