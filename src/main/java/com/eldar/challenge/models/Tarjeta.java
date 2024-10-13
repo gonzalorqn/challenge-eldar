@@ -1,7 +1,5 @@
 package com.eldar.challenge.models;
 
-import java.util.Date;
-
 import com.eldar.challenge.enums.MarcaTarjetaEnum;
 
 import jakarta.persistence.Column;
@@ -36,7 +34,7 @@ public class Tarjeta {
 	private String numero;
 
 	@Column(name = "fecha_vencimiento")
-	private Date fechaVencimiento;
+	private String fechaVencimiento;
 
 	@Column(name = "cardholder")
 	private String cardholder;

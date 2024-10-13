@@ -1,7 +1,5 @@
 package com.eldar.challenge.services;
 
-import java.util.Date;
-
 import org.springframework.stereotype.Service;
 
 import com.eldar.challenge.enums.MarcaTarjetaEnum;
@@ -19,7 +17,7 @@ public interface TarjetaService {
 	 * @param fechaVencimiento Fecha de vencimiento de la tarjeta.
 	 * @return Objeto Tarjeta creado.
 	 */
-	public Tarjeta crearTarjeta(MarcaTarjetaEnum marca, String numero, String cardholder, Date fechaVencimiento);
+	public Tarjeta crearTarjeta(MarcaTarjetaEnum marca, String numero, String cardholder, String fechaVencimiento);
 
 	/**
 	 * Obtiene todos los datos de una tarjeta. A partir del id de la tarjeta,
