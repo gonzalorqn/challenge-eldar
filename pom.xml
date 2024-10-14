@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.eldar</groupId>
-	<artifactId>challenge</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>challenge</name>
+	<artifactId>challenge-eldar</artifactId>
+	<version>1.0.0</version>
+	<name>challenge-eldar</name>
 	<description>Challenge Java backend Eldar</description>
 	<url/>
 	<licenses>
