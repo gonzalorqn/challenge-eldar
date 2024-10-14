@@ -61,7 +61,7 @@ paths:
         '200':
           description: OK
           schema:
-            type: boolean
+            type: string
   /operacion:
     post:
       operationId: realizarOperacion
