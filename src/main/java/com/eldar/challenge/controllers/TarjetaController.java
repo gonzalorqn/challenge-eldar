@@ -71,6 +71,7 @@ public class TarjetaController implements TarjetaApi {
 		tarjetaDto.setNumero(tarjeta.getNumero());
 		tarjetaDto.setCardholder(tarjeta.getCardholder());
 		tarjetaDto.setFechaVencimiento(tarjeta.getFechaVencimiento());
+
 		return ResponseEntity.ok().body(tarjetaDto);
 	}
 
