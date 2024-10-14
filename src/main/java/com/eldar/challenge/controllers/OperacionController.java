@@ -43,8 +43,7 @@ public class OperacionController implements OperacionApi {
 
 	@Override
 	public ResponseEntity<TasaOperacionDTO> consultarTasaOperacion(String idOperacion) {
-		// TODO Auto-generated method stub
-		return OperacionApi.super.consultarTasaOperacion(idOperacion);
+		return ResponseEntity.ok().body(operacionService.consultarTasa(Long.parseLong(idOperacion)));
 	}
 
 	@Override
