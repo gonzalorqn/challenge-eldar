@@ -138,7 +138,6 @@ definitions:
         description: Importe de la operación.
       tarjeta:
         $ref: "#/definitions/TarjetaDTO"
-        description: Tarjeta usada para realizar la operación.
       fechaTransaccion:
         type: string
         format: date-time
