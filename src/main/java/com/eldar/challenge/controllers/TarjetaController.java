@@ -50,9 +50,15 @@ public class TarjetaController implements TarjetaApi {
 	}
 
 	@Override
-	public ResponseEntity<Boolean> getIsTarjetaValida(String idTarjeta) {
-		// TODO Auto-generated method stub
-		return TarjetaApi.super.getIsTarjetaValida(idTarjeta);
+	public ResponseEntity<String> getIsTarjetaValida(String idTarjeta) {
+		String retorno = "";
+		if (tarjetaService.isTarjetaValida(Long.parseLong(idTarjeta))) {
+			retorno = "La tarjeta indicada es válida para operar en el sistema.";
+		} else {
+			retorno = "La tarjeta indicada está vencida y no es válida para operar en el sistema.";
+		}
+
+		return ResponseEntity.ok().body(retorno);
 	}
 
 	@Override

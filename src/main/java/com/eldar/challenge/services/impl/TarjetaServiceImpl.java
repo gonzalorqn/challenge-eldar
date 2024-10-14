@@ -1,8 +1,11 @@
 package com.eldar.challenge.services.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +53,23 @@ public class TarjetaServiceImpl implements TarjetaService {
 
 	@Override
 	public boolean isTarjetaValida(Long idTarjeta) {
-		// TODO Auto-generated method stub
-		return false;
+		Optional<Tarjeta> tarjetaOptional = tarjetaRepository.findById(idTarjeta);
+		if (tarjetaOptional.isPresent()) {
+			Tarjeta tarjeta = tarjetaOptional.get();
+
+			// Parseo la fecha a Date
+			SimpleDateFormat formatter = new SimpleDateFormat("MM/yy");
+			try {
+				Date fechaVencimiento = formatter.parse(tarjeta.getFechaVencimiento());
+				Date fechaActual = new Date();
+				return fechaActual.before(fechaVencimiento);
+			} catch (ParseException e) {
+				e.printStackTrace();
+				return false;
+			}
+		} else {
+			throw new IllegalArgumentException("No existe una tarjeta con el ID '" + idTarjeta + "'.");
+		}
 	}
 
 	/**

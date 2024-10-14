@@ -61,13 +61,13 @@ public interface TarjetaApi {
     }
 
 
-    @ApiOperation(value = "", nickname = "getIsTarjetaValida", notes = "Verifica si una tarjeta es válida para operar en el sistema.", response = Boolean.class, tags={ "Tarjeta", })
+    @ApiOperation(value = "", nickname = "getIsTarjetaValida", notes = "Verifica si una tarjeta es válida para operar en el sistema.", response = String.class, tags={ "Tarjeta", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = Boolean.class) })
+        @ApiResponse(code = 200, message = "OK", response = String.class) })
     @RequestMapping(value = "/tarjeta/{idTarjeta}/isValida",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<Boolean> getIsTarjetaValida(@ApiParam(value = "Id de la tarjeta.",required=true) @PathVariable("idTarjeta") String idTarjeta) {
+    default ResponseEntity<String> getIsTarjetaValida(@ApiParam(value = "Id de la tarjeta.",required=true) @PathVariable("idTarjeta") String idTarjeta) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
