@@ -40,8 +40,12 @@ public class TarjetaServiceImpl implements TarjetaService {
 
 	@Override
 	public Tarjeta obtenerTarjeta(Long idTarjeta) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Tarjeta> tarjetaOptional = tarjetaRepository.findById(idTarjeta);
+		if (tarjetaOptional.isPresent()) {
+			return tarjetaOptional.get();
+		} else {
+			throw new IllegalArgumentException("No existe una tarjeta con el ID '" + idTarjeta + "'.");
+		}
 	}
 
 	@Override

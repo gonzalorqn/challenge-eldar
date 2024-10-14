@@ -15,8 +15,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(value = Exception.class)
-	public ResponseEntity<String> returnErrorIllegalArg(Exception exception) {
+	public ResponseEntity<String> returnErrorGenerico(Exception exception) {
 		return new ResponseEntity<>("Ocurrió un error inesperado: " + exception.getMessage(),
 				HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(value = NumberFormatException.class)
+	public ResponseEntity<String> returnErrorNumberFormat(NumberFormatException exception) {
+		return new ResponseEntity<>("Valor inesperado. El ID ingresado debe ser un número.", HttpStatus.BAD_REQUEST);
 	}
 }

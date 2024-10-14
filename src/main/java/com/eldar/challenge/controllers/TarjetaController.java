@@ -57,8 +57,15 @@ public class TarjetaController implements TarjetaApi {
 
 	@Override
 	public ResponseEntity<TarjetaDTO> getTarjeta(String idTarjeta) {
-		// TODO Auto-generated method stub
-		return TarjetaApi.super.getTarjeta(idTarjeta);
+		Tarjeta tarjeta = tarjetaService.obtenerTarjeta(Long.parseLong(idTarjeta));
+
+		TarjetaDTO tarjetaDto = new TarjetaDTO();
+		tarjetaDto.setId(tarjeta.getId());
+		tarjetaDto.setMarca(tarjeta.getMarca().getValue());
+		tarjetaDto.setNumero(tarjeta.getNumero());
+		tarjetaDto.setCardholder(tarjeta.getCardholder());
+		tarjetaDto.setFechaVencimiento(tarjeta.getFechaVencimiento());
+		return ResponseEntity.ok().body(tarjetaDto);
 	}
 
 }
